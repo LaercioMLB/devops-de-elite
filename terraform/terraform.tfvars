@@ -1,3 +1,3 @@
 region       = "nyc1"
-do_token     = "dop_v1_6801e14da6e9ef736b6285bd0b4fef24c75585c060a82e3919922ad14ee6388b"
+do_token     = "dop_v1_17113b35f58ed2cfff8058b11b503253217d2e95097f8bcdd4fa976ecb9499cd"
 ssh_key_name = "Jornada DevOps"
