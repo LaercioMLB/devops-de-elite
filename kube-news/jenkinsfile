@@ -1,0 +1,13 @@
+pipeline{
+    agent any
+
+    stages{
+        stage ('Builder Docker Image'){
+            steps{
+                script{
+                    dockerapp = docker.build("laerciomlb/kube-news:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
+                }
+            }
+        }
+    }
+}
