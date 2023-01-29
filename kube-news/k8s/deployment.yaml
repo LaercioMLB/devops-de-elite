@@ -48,10 +48,14 @@ spec:
     metadata:
       labels:
         app: web
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
         - name: web
-          image: laerciomlb/kube-news:v1
+          image: laerciomlb/kube-news:{{TAG}}
           ports:
           - containerPort: 8080
           env:
@@ -74,4 +78,3 @@ spec:
     ports:
       - port: 80
         targetPort: 8080
-    type: LoadBalancer

@@ -1,15 +1,3 @@
-variable "region" {
-  default = ""
-}
-
-variable "do_token" {
-  default = ""
-}
-
-variable "ssh_key_name" {
-  default = ""
-}
-
 terraform {
   required_providers {
     digitalocean = {
@@ -20,26 +8,25 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = var.do_token
+  token = "dop_v1_12ca668056e3215500947951253662d2bd4d105b0cb35631a7ec1ae8b4eb4e74"
 }
 
 
 resource "digitalocean_droplet" "jenkins" {
   image    = "ubuntu-22-04-x64"
-  name     = "jenkins-vm"
-  region   = var.region
+  name     = "jenkins"
+  region   = "nyc1"
   size     = "s-2vcpu-2gb"
-  ssh_keys = [data.digitalocean_ssh_key.ssh_key.id]
+  ssh_keys = [data.digitalocean_ssh_key.ssh_keys.id]
 }
 
-data "digitalocean_ssh_key" "ssh_key" {
-  name = var.ssh_key_name
+data "digitalocean_ssh_key" "ssh_keys" {
+  name = "Jornada DevOps"
 }
 
 resource "digitalocean_kubernetes_cluster" "k8s" {
   name   = "k8s"
-  region = var.region
-  # Grab the latest version slug from `doctl kubernetes options versions`
+  region = "nyc1"
   version = "1.25.4-do.0"
 
   node_pool {
